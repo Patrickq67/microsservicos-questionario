@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Quiz Microsserviços</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f4f4;
+      padding: 20px;
+      margin: 0;
+    }
+
+    h1 {
+      text-align: center;
+      color: #333;
+      margin-bottom: 30px;
+    }
+
+    form {
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .question {
+      background: white;
+      border-radius: 8px;
+      padding: 15px;
+      margin-bottom: 15px;
+      box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .question.correct {
+      border-left: 5px solid #4CAF50;
+    }
+
+    .question.incorrect {
+      border-left: 5px solid #f44336;
+    }
+
+    label {
+      display: block;
+      margin: 6px 0;
+      font-size: 16px;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      margin-bottom: 15px;
+      display: block;
+    }
+
+    button {
+      display: block;
+      width: 100%;
+      max-width: 300px;
+      margin: 30px auto 0;
+      padding: 12px;
+      background: #2196F3;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-size: 18px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    button:hover {
+      background: #1976D2;
+    }
+  </style>
+</head>
+<body>
+  <h1>Quiz sobre Microsserviços</h1>
+
+  <form id="quizForm"></form>
+
+  <button onclick="verificarRespostas()">Finalizar</button>
+
+  <script>
+    const perguntas = [
+      { texto: "1. Microsserviços são partes independentes de um sistema com funcionalidades específicas.", correta: "V" },
+      { texto: "2. Microsserviços compartilham o mesmo banco de dados central.", correta: "F" },
+      { texto: "3. Uma vantagem dos microsserviços é a possibilidade de usar múltiplas linguagens de programação.", correta: "V" },
+      { texto: "4. A arquitetura de microsserviços não permite escalabilidade.", correta: "F" },
+      { texto: "5. Uma aplicação monolítica é mais fácil de escalar do que microsserviços.", correta: "F" },
+      { texto: "6. Cada microsserviço executa seu próprio processo.", correta: "V" },
+      { texto: "7. O uso de microsserviços pode gerar aumento na complexidade do sistema.", correta: "V" },
+      { texto: "8. Os serviços devem compartilhar detalhes de implementação via API.", correta: "F" },
+      { texto: "9. Microsserviços se comunicam frequentemente via HTTP.", correta: "V" },
+      { texto: "10. A documentação e gestão não são importantes em projetos com microsserviços.", correta: "F" }
+    ];
+
+    const form = document.getElementById("quizForm");
+
+    // Renderiza perguntas 1 a 10
+    perguntas.forEach((pergunta, index) => {
+      form.innerHTML += `
+        <div class="question" id="q${index}">
+          <p>${pergunta.texto}</p>
+          <label><input type="radio" name="q${index}" value="V"> Verdadeiro</label>
+          <label><input type="radio" name="q${index}" value="F"> Falso</label>
+        </div>
+      `;
+    });
+
+    // Adiciona a pergunta 11 com imagens
+    form.innerHTML += `
+      <div class="question" id="qImagem">
+        <p><strong>11. Qual das imagens abaixo representa melhor uma arquitetura de microsserviços?</strong></p>
+        
+        <p><strong>Imagem 1:</strong></p>
+        <img src="1.png" alt="Imagem 1 - Arquitetura Monolítica">
+        
+        <p><strong>Imagem 2:</strong></p>
+        <img src="2.png" alt="Imagem 2 - Arquitetura de Microsserviços">
+
+        <label><input type="radio" name="qImagem" value="1"> Imagem 1</label>
+        <label><input type="radio" name="qImagem" value="2"> Imagem 2</label>
+      </div>
+    `;
+
+    function verificarRespostas() {
+      perguntas.forEach((pergunta, index) => {
+        const radios = document.getElementsByName("q" + index);
+        let resposta = null;
+        for (let radio of radios) {
+          if (radio.checked) {
+            resposta = radio.value;
+            break;
+          }
+        }
+
+        const div = document.getElementById("q" + index);
+        div.classList.remove("correct", "incorrect");
+
+        if (resposta === pergunta.correta) {
+          div.classList.add("correct");
+        } else {
+          div.classList.add("incorrect");
+        }
+      });
+
+      const respostaImagem = document.querySelector('input[name="qImagem"]:checked');
+      const divImagem = document.getElementById("qImagem");
+      divImagem.classList.remove("correct", "incorrect");
+
+      if (respostaImagem && respostaImagem.value === "2") {
+        divImagem.classList.add("correct");
+      } else {
+        divImagem.classList.add("incorrect");
+      }
+    }
+  </script>
+</body>
+</html>
