@@ -3,28 +3,33 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Quiz Microsserviços</title>
+  <title>🛰️ Monolítico x Microsserviços</title>
+  <link rel="stylesheet" href="space.css">
+  <script src="space.js" defer></script>
   <style>
-    * {
-      box-sizing: border-box;
-    }
-
     body {
       font-family: Arial, sans-serif;
       background: #f4f4f4;
-      padding: 20px;
+      padding: 0;
       margin: 0;
+      text-align: center;
     }
 
     h1 {
-      text-align: center;
       color: #333;
-      margin-bottom: 30px;
+      margin: 20px 0;
+    }
+
+    canvas#board {
+      display: block;
+      margin: 0 auto;
+      background-color: black;
     }
 
     form {
       max-width: 600px;
       margin: 0 auto;
+      padding: 20px;
     }
 
     .question {
@@ -33,6 +38,7 @@
       padding: 15px;
       margin-bottom: 15px;
       box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+      text-align: left;
     }
 
     .question.correct {
@@ -62,7 +68,7 @@
       display: block;
       width: 100%;
       max-width: 300px;
-      margin: 30px auto 0;
+      margin: 30px auto 40px;
       padding: 12px;
       background: #2196F3;
       color: white;
@@ -79,10 +85,11 @@
   </style>
 </head>
 <body>
+  <h1>🛰️ Monolítico x Microsserviços</h1>
+  <canvas id="board" width="800" height="400"></canvas>
+
   <h1>Quiz sobre Microsserviços</h1>
-
   <form id="quizForm"></form>
-
   <button onclick="verificarRespostas()">Finalizar</button>
 
   <script>
@@ -101,7 +108,6 @@
 
     const form = document.getElementById("quizForm");
 
-    // Renderiza perguntas 1 a 10
     perguntas.forEach((pergunta, index) => {
       form.innerHTML += `
         <div class="question" id="q${index}">
@@ -112,14 +118,13 @@
       `;
     });
 
-    // Adiciona a pergunta 11 com imagens
     form.innerHTML += `
       <div class="question" id="qImagem">
         <p><strong>11. Qual das imagens abaixo representa melhor uma arquitetura de microsserviços?</strong></p>
-        
+
         <p><strong>Imagem 1:</strong></p>
         <img src="https://admin.wac.co/uploads/Detailed_Insight_to_Monolithic_Architecture_e3e827d4bc.jpg" alt="Imagem 1 - Arquitetura Monolítica">
-        
+
         <p><strong>Imagem 2:</strong></p>
         <img src="https://miro.medium.com/v2/resize:fit:720/format:webp/1*uxuLajvtDjLuhvw8xO2_Uw.png" alt="Imagem 2 - Arquitetura de Microsserviços">
 
