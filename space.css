@@ -6,3 +6,20 @@ body {
 #board {
     background-color: black;
 }
+
+#touch-controls {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+  gap: 20px;
+}
+
+#touch-controls button {
+  font-size: 28px;
+  padding: 10px 20px;
+  border-radius: 10px;
+  border: none;
+  background: #4CAF50;
+  color: white;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}

@@ -207,3 +207,31 @@ function detectCollision(a, b) {
            a.y < b.y + b.height &&  //a's top left corner doesn't reach b's bottom left corner
            a.y + a.height > b.y;    //a's bottom left corner passes b's top left corner
 }
+
+
+function moverEsquerda() {
+    if (gameOver) return;
+    if (ship.x - shipVelocityX >= 0) {
+        ship.x -= shipVelocityX;
+    }
+}
+
+function moverDireita() {
+    if (gameOver) return;
+    if (ship.x + shipVelocityX + ship.width <= board.width) {
+        ship.x += shipVelocityX;
+    }
+}
+
+function atirar() {
+    if (gameOver) return;
+
+    let bullet = {
+        x: ship.x + shipWidth * 15 / 32,
+        y: ship.y,
+        width: tileSize / 8,
+        height: tileSize / 2,
+        used: false
+    };
+    bulletArray.push(bullet);
+}
